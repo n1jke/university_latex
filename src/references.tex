@@ -9,6 +9,9 @@
 % Based on https://tex.stackexchange.com/a/199385/139966
 \addtocline{section}{\texorpdfstring{\bibname}{\bibname}}
 
+% Шаблонный режим: выводим выбранные источники даже без \cite в тексте.
+\nocite{khononov_learning_ddd,gof_design_patterns,martin_clean_architecture,kafka_official,effective_go}
+
 % Зачем: Печать списка литературы. База данных литературы - файл bibliography_database.bib
 
 \bibliography{\rootPathPrefix ../src/bibliography_database}
