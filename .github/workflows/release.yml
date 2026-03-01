@@ -1,0 +1,45 @@
+name: Create and publish LaTeX pdf
+
+on:
+  push:
+    tags:
+      - v*
+
+env:
+  REPORT_NAME: ${{ github.repository_owner }}-${{ github.event.repository.name }}-${{ github.ref_name }}.pdf
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+      deployments: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Build
+        run: |
+          python compile.py && \
+          mv src/report.pdf src/${{ env.REPORT_NAME }}
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+      - name: Upload artifacts
+        id: upload-release-asset
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            src/${{ env.REPORT_NAME }}
