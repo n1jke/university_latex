@@ -1,1 +1,31 @@
-% Здесь -- контент записки
+% Разделы пояснительной записки
+\sectioncentered*{ВВЕДЕНИЕ}
+\label{sec:introduction}
+\addtocline{section}{Введение}
+\input{sections/00_introduction}
+
+\section{Архитектура вычислительных систем x86 и ARM}
+\label{sec:architecture}
+\input{sections/01_architecture}
+
+\section{Платформа программного обеспечения}
+\label{sec:software-platform}
+\input{sections/02_software_platform}
+
+% пока нету(
+\section{Теоретическое обоснование сравнения моделей многопоточности}
+\label{sec:threading-models}
+\input{sections/03_threading_models}
+
+\section{Проектирование программы и методики эксперимента}
+\label{sec:experiment-design}
+\input{sections/04_experiment_design}
+
+\section{Сравнение производительности моделей 1:1 и M:N}
+\label{sec:results}
+\input{sections/05_results}
+
+\sectioncentered*{ЗАКЛЮЧЕНИЕ}
+\label{sec:conclusion}
+\addtocline{section}{Заключение}
+\input{sections/06_conclusion}
